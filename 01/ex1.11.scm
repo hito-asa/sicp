@@ -3,5 +3,5 @@
 
 (define (ff n) (ff-iter 2 1 0 n))
 
-(define (ff-iter a b c count) (if (= count 0) c (ff-iter (+ a (* 2 b) (* 3 c)) a b (- count 1))))
+(define (ff-iter a b c count) (if (<= count 0) c (ff-iter (+ a (* 2 b) (* 3 c)) a b (- count 1))))
 
