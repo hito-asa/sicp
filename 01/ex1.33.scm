@@ -1,0 +1,20 @@
+(define (fil-accum filter? combiner null-value term a next b)
+  (define (iter a result)
+    (cond ((> a b) result)
+          ((filter? a) (iter (next a) (combiner (term a) result)))
+          (else (iter (next a) result))))
+  (iter a null-value))
+
+(define (psa a b)
+  (define (inc n) (+ n 1))
+  (define (comb x y) (+ x y))
+  (define (square x) (* x x))
+  (fil-accum prime? comb 0 square a inc b))
+
+(define (psb a b)
+  (define (inc n) (+ n 1))
+  (define (comb x y) (+ x y))
+  (define (val x) x)
+  (define (filter n) (= (gcd n b) 1))
+  (fil-accum filter comb 0 val a inc b))
+
